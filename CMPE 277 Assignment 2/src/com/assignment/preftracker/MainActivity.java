@@ -59,7 +59,10 @@ public class MainActivity extends Activity {
     	{
     		mesg+=list.get(i)+",";
     	}
+    	if(prefs.getString("book", "").length()!=0)
+    	{
     	display.setText("Preferences saved as "+prefs.getString("book", ""));
+    	}
     	if(mesg.length()!=0)
     	{
     	display2.setText("Messages saved as "+mesg);
