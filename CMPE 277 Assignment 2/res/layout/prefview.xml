@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/author"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="35dp"
+        android:ems="10"
+        android:hint="Max 70 characters" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/name"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Max 70 characters" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/name"
+        android:layout_below="@+id/name"
+        android:layout_marginTop="46dp"
+        android:ems="10"
+        android:hint="Max 250 characters only"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/psave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/editText1"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="46dp"
+        android:onClick="psave"
+        android:text="Save" />
+
+    <Button
+        android:id="@+id/pcancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_alignRight="@+id/editText1"
+        android:layout_marginRight="23dp"
+        android:onClick="pcancel"
+        android:text="Cancel" />
+
+</RelativeLayout>

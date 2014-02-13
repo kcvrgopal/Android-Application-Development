@@ -1,0 +1,1 @@
+Application for learning about activity lifecycle, shared preferences and android sqlite storage
