@@ -63,6 +63,7 @@
          android:layout_alignLeft="@+id/pref"
          android:layout_alignParentBottom="true"
          android:layout_marginBottom="83dp"
-         android:text="Close" />
+         android:text="Close"
+         android:onClick="mclose" />
 
 </RelativeLayout>

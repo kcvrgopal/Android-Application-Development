@@ -53,11 +53,36 @@
         android:id="@+id/pcancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
+        android:layout_alignBaseline="@+id/psave"
+        android:layout_alignBottom="@+id/psave"
         android:layout_alignRight="@+id/editText1"
-        android:layout_marginRight="23dp"
         android:onClick="pcancel"
         android:text="Cancel" />
+
+    <TextView
+        android:id="@+id/label1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/author"
+        android:layout_alignBottom="@+id/author"
+        android:layout_alignParentLeft="true"
+        android:text="Name" />
+
+    <TextView
+        android:id="@+id/label2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/name"
+        android:layout_alignParentLeft="true"
+        android:text="Author" />
+
+    <TextView
+        android:id="@+id/label3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/editText1"
+        android:layout_alignBottom="@+id/editText1"
+        android:layout_alignParentLeft="true"
+        android:text="Description" />
 
 </RelativeLayout>

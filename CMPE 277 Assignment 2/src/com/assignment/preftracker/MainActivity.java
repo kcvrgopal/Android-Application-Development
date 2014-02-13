@@ -77,6 +77,11 @@ public class MainActivity extends Activity {
     	Intent intent=new Intent(context,PrefActivity.class);
 		startActivity(intent);
     }
+    
+    public void mClose(View view)
+    {
+    	finish();
+    }
 
 
     @Override

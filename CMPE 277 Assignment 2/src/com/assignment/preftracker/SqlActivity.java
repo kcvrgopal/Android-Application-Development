@@ -28,8 +28,7 @@ public void ssave(View view){
 }
 
 public void sclose(View view){
-	Intent intent=new Intent(context,MainActivity.class);
-	startActivity(intent);
+	finish();
 }
 
 public String getDateTime() {
