@@ -1,0 +1,1 @@
+The purpose of this application is to learn about Android services. This app downloads files using android services.

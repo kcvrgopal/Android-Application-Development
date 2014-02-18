@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FileDownload</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="file1">http://www.sjsu.edu/registrar/docs/name_change.pdf</string>
+	<string name="file2">http://as.sjsu.edu/steinbeck/documents/BIOGRAPHY_Biography_in_Depth.pdf</string>
+	<string name="file3">http://my.sjsu.edu/docs/hr/recruiting/UG_RS_SJHR_Open_Recruitment_Attachments.pdf</string>
+	<string name="file4">http://www.engr.sjsu.edu/media/pdf/svls/f09/pres_om_nalamasu_092409.pdf</string>
+	<string name="file5">http://www.engr.sjsu.edu/gaojerry/IEEEMobileCloud2013/shuttle%20info.pdfhttp://www.sjsu.edu/registrar/docs/name_change.pdf</string>
+	
+	<string name="ifile1">http://blogs.sjsu.edu/today/files/2014/01/mima-mounds-1l9fs40.jpg</string>
+	<string name="ifile2">http://blogs.sjsu.edu/today/files/2014/01/Gragera-inpost-11xdqr8.jpg</string>
+	<string name="ifile3">http://blogs.sjsu.edu/today/files/2014/01/spider-inpost-285iz3l.jpg</string>
+	
+	<string name="tfile1">http://www.sjsu.edu/towerfoundation/docs/Employment-Handbook-12.doc</string>
+	<string name="tfile2">http://www.engr.sjsu.edu/cme/assets/files/aluminfo.doc</string>
+	<string name="tfile3">www.sjsu.edu/publicaffairs/docs/sjsu_fax_template.doc</string>
+	<string name="tfile4">www.engr.sjsu.edu/E10/E10pdf/RobotProjectGuidelinesF13.doc</string>
+	<string name="tfile5">www.sjsu.edu/edd/Letter_of_Rec_form.doc</string>
+</resources>

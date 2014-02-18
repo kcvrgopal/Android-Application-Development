@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/pdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="84dp"
+        android:text="Start Download"
+        android:onClick="pdown" />
+
+    <TextView
+        android:id="@+id/plabel1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="48dp"
+        android:text="PDF 1 File Location"
+        android:textSize="30px" />
+
+    <EditText
+        android:id="@+id/pfile1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/plabel1"
+        android:layout_alignBottom="@+id/plabel1"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:singleLine="true"
+        android:text="@string/file1" />
+
+    <EditText
+        android:id="@+id/pfile2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/pfile1"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:singleLine="true"
+        android:text="@string/file2" />
+
+    <TextView
+        android:id="@+id/plabel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/pfile2"
+        android:layout_alignBottom="@+id/pfile2"
+        android:layout_alignParentLeft="true"
+        android:text="PDF 2 File Location"
+        android:textSize="30px" />
+
+    <EditText
+        android:id="@+id/pfile3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/pfile2"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:singleLine="true"
+        android:text="@string/file3" />
+
+    <TextView
+        android:id="@+id/plabel3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/pfile3"
+        android:layout_alignBottom="@+id/pfile3"
+        android:layout_alignParentLeft="true"
+        android:text="PDF 3 File Location"
+        android:textSize="30px" />
+
+    <TextView
+        android:id="@+id/plabel5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/pfile5"
+        android:layout_alignBottom="@+id/pfile5"
+        android:layout_alignParentLeft="true"
+        android:text="PDF 5 File Location"
+        android:textSize="30px" />
+
+    <EditText
+        android:id="@+id/pfile5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/pdown"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="63dp"
+        android:ems="10"
+        android:singleLine="true"
+        android:text="@string/file5" />
+
+    <EditText
+        android:id="@+id/pfile4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/pfile3"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:singleLine="true"
+        android:text="@string/file4" />
+
+    <TextView
+        android:id="@+id/plabel4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/pfile4"
+        android:layout_alignBottom="@+id/pfile4"
+        android:layout_alignParentLeft="true"
+        android:text="PDF 4 File Location"
+        android:textSize="30px" />
+
+</RelativeLayout>
