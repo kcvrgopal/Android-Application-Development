@@ -31,6 +31,7 @@
         <activity
             android:name="com.rajarena.filedownload.ImgActivity">
         </activity>
+        <service android:name="com.rajarena.filedownload.MeraIntentService"></service>
     </application>
 
 </manifest>
