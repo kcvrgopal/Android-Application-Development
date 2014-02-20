@@ -6,11 +6,12 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-	    />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	
 	
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="14"
         android:targetSdkVersion="18" />
 
 
@@ -37,7 +38,13 @@
         <activity
             android:name="com.rajarena.filedownload.ImgActivity">
         </activity>
-        <service android:name=".MeraIntentService"></service>
+        <service android:name=".MeraService"></service>
+          <receiver android:name="Receiver" >
+              <intent-filter>
+                  <action android:name="com.rajarena.filedownload.CUSTOM_INTENT">
+                  </action>
+              </intent-filter>
+          </receiver>
     </application>
 
 </manifest>

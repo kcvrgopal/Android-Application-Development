@@ -3,7 +3,6 @@ package com.rajarena.filedownload;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
 
@@ -13,7 +12,7 @@ public class Receiver extends BroadcastReceiver {
 	        super();
 	    }
 
-	    protected void onReceiveResult(int resultCode, Bundle resultData) {
+	    /*protected void onReceiveResult(int resultCode, Bundle resultData) {
 	        //super.onReceive(resultCode, resultData);
 	   //     if (resultCode == MeraIntentService.UPDATE_PROGRESS) {
 	            int progress = resultData.getInt("progress");
@@ -24,11 +23,14 @@ public class Receiver extends BroadcastReceiver {
 					System.out.println(progress);
 				}
 	        }
-	  //  }
+	  //  }*/
 
 		@Override
 		public void onReceive(Context arg0, Intent arg1) {
 			// TODO Auto-generated method stub
+			int x=arg1.getIntExtra("progress", 0);
+			System.out.println("XYZ"+x);
+			Toast.makeText(arg0, x, Toast.LENGTH_SHORT).show();
 			
 		}
 }

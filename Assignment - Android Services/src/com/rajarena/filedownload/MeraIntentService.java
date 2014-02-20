@@ -48,14 +48,17 @@ public class MeraIntentService extends IntentService {
 						total += count;
 						// publishing the progress....
 						Bundle resultData = new Bundle();
+						Intent intent1=new Intent(this, Receiver.class);
+						//intent1.setAction(Receiver.class);
 						resultData.putInt("progress" ,(int) (total * 100 / fileLength));
 						//receiver.send(UPDATE_PROGRESS, resultData);
-						if((int) (total * 100 / fileLength)%25==0&&(int) (total * 100 / fileLength)!=0)
+						int x= (int) (total * 100 / fileLength);
+						if(x%25==0&&x!=0)
 						{
-							Toast toast=Toast.makeText(getApplicationContext(), "Downloaded"+(total * 100 / fileLength) , Toast.LENGTH_SHORT);
-							toast.show();
-							System.out.println((total * 100 / fileLength));
-						}
+							System.out.println(x);
+						intent1.putExtra("progress", x);
+						sendBroadcast(intent);
+						}	
 						output.write(data, 0, count);
 					}
 
@@ -142,13 +145,14 @@ public class MeraIntentService extends IntentService {
 						total += count;
 						// publishing the progress....
 						Bundle resultData = new Bundle();
+						Intent intent1=new Intent("com.rajarena.filedownload");
 						resultData.putInt("progress" ,(int) (total * 100 / fileLength));
-						if((int) (total * 100 / fileLength)%25==0&&(int) (total * 100 / fileLength)!=0)
+						int x= (int) (total * 100 / fileLength);
+						if(x%25==0)
 						{
-							Toast toast=Toast.makeText(getApplicationContext(), "Downloaded"+(total * 100 / fileLength) , Toast.LENGTH_SHORT);
-							toast.show();
-							System.out.println((total * 100 / fileLength));
-						}
+						intent1.putExtra("progress", x);
+						sendBroadcast(intent);
+						}						
 						//receiver.send(UPDATE_PROGRESS, resultData);
 						output.write(data, 0, count);
 					}

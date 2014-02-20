@@ -1,130 +1,81 @@
 package com.rajarena.filedownload;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 
+import java.net.URL;
 import android.app.Service;
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
+import android.os.Binder;
 import android.os.IBinder;
-import android.os.Looper;
-import android.os.Message;
 import android.widget.Toast;
 
 public class MeraService extends Service {
-	private Looper mServiceLooper;
-	private ServiceHandler mServiceHandler;
-
-	// Handler that receives messages from the thread
-	private final class ServiceHandler extends Handler {
-		public ServiceHandler(Looper looper) {
-			super(looper);
-		}
-		@Override
-		public void handleMessage(Message msg) {
-			// Normally we would do some work here, like download a file.
-			// For our sample, we just sleep for 5 seconds.
-			long endTime = System.currentTimeMillis() + 5*1000;
-			while (System.currentTimeMillis() < endTime) {
-				synchronized (this) {
-					try {
-						wait(endTime - System.currentTimeMillis());
-					} catch (Exception e) {
-					}
-				}
-			}
-			// Stop the service using the startId, so that we don't stop
-			// the service in the middle of handling another job
-			stopSelf(msg.arg1);
-		}
-	}
-
-	@Override
-	public void onCreate() {
-		// Start up the thread running the service.  Note that we create a
-		// separate thread because the service normally runs in the process's
-		// main thread, which we don't want to block.  We also make it
-		// background priority so CPU-intensive work will not disrupt our UI.
-		HandlerThread thread = new HandlerThread("ServiceStartArguments",1);
-		thread.start();
-
-		// Get the HandlerThread's Looper and use it for our Handler
-		mServiceLooper = thread.getLooper();
-		mServiceHandler = new ServiceHandler(mServiceLooper);
-	}
+	private final IBinder mBinder = new MyBinder();
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
-		if(intent.getStringArrayExtra("URL1")!=null)
-		{
-			String[] url=intent.getStringArrayExtra("URL1");
-			System.out.println(url.length);
-			for(int i=0;i<url.length;i++)
-			{
-				try {
-					File file=new File("/sdcard/Download/file"+i+".pdf");
-					System.out.println("Hey"+url[i]);
-					URL url1=new URL(url[i]);
-					URLConnection connection = url1.openConnection();
-					connection.connect();
-					int fileLength = connection.getContentLength();
-					InputStream input = new BufferedInputStream(url1.openStream());
-					OutputStream output = new FileOutputStream(file);
-					byte data[] = new byte[1024];
-					long total = 0;
-					int count;
-					while ((count = input.read(data)) != -1) {
-						total += count;
-						// publishing the progress....
-						Bundle resultData = new Bundle();
-						resultData.putInt("progress" ,(int) (total * 100 / fileLength));
-						//receiver.send(UPDATE_PROGRESS, resultData);
-						output.write(data, 0, count);
-					}
+		boolean p=intent.getBooleanExtra("pdf", false);
+		boolean i=intent.getBooleanExtra("img", false);
+		boolean t=intent.getBooleanExtra("text", false);
 
-					output.flush();
-					output.close();
-					input.close();
-				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				System.out.println("in "+i);
+		if(p)
+		{
+		String[] url={"http://www.sjsu.edu/registrar/docs/name_change.pdf","http://as.sjsu.edu/steinbeck/documents/BIOGRAPHY_Biography_in_Depth.pdf","http://my.sjsu.edu/docs/hr/recruiting/UG_RS_SJHR_Open_Recruitment_Attachments.pdf","http://www.engr.sjsu.edu/media/pdf/svls/f09/pres_om_nalamasu_092409.pdf","http://www.engr.sjsu.edu/gaojerry/IEEEMobileCloud2013/shuttle%20info.pdf"};
+		try {
+			new DownloadThis().execute(new URL(url[0]),new URL(url[1]),new URL(url[2]),new URL(url[3]),new URL(url[4]));
+		}
+		catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+		else if(t)
+		{
+			String[] url={"http://www.sjsu.edu/towerfoundation/docs/Employment-Handbook-12.doc","http://www.engr.sjsu.edu/cme/assets/files/aluminfo.doc","http://www.sjsu.edu/publicaffairs/docs/sjsu_fax_template.doc","http://www.engr.sjsu.edu/E10/E10pdf/RobotProjectGuidelinesF13.doc","http://www.sjsu.edu/edd/Letter_of_Rec_form.doc"};
+			try {
+				new DownloadThis().execute(new URL(url[0]),new URL(url[1]),new URL(url[2]),new URL(url[3]),new URL(url[4]));
+			}
+			catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
-
-		// For each start request, send a message to start a job and deliver the
-		// start ID so we know which request we're stopping when we finish the job
-		Message msg = mServiceHandler.obtainMessage();
-		msg.arg1 = startId;
-		mServiceHandler.sendMessage(msg);
-
-		// If we get killed, after returning from here, restart
-		return START_STICKY;
+		else if(i)
+		{
+			String[] url={"http://blogs.sjsu.edu/today/files/2014/01/mima-mounds-1l9fs40.jpg","http://blogs.sjsu.edu/today/files/2014/01/Gragera-inpost-11xdqr8.jpg","http://blogs.sjsu.edu/today/files/2014/01/spider-inpost-285iz3l.jpg","http://www.engr.sjsu.edu/files/images/exceed-image-14-120815.thumbnail.jpg","http://www.engr.sjsu.edu/files/images/exceed-group-1-120815.thumbnail.jpg",
+							"http://blogs.sjsu.edu/today/files/2014/02/0005_proam-1uawpew.jpg","http://blogs.sjsu.edu/today/files/2013/11/dance_0003_20131101-396-0045.jpg-zq3m7w.jpg","http://blogs.sjsu.edu/today/files/2013/11/dance_0009_20131101-396-0355.jpg-16qimv6.jpg",
+							"http://blogs.sjsu.edu/today/files/2013/11/dance_0022_20131101-396-0822.jpg-1qyfyhk.jpg","http://blogs.sjsu.edu/today/files/2013/11/dance_0027_20131101-396-0996.jpg-2klbnkv.jpg"};
+			try {
+				new DownloadThis().execute(new URL(url[0]),new URL(url[1]),new URL(url[2]),
+						new URL(url[3]),new URL(url[4]),new URL(url[5]),
+						new URL(url[6]),new URL(url[7]),new URL(url[8]),new URL(url[9]));
+			}
+			catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+			
+		return Service.START_STICKY;
 	}
 
 	@Override
 	public IBinder onBind(Intent intent) {
 		// We don't provide binding, so return null
-		return null;
+		return mBinder;
 	}
 
 	@Override
 	public void onDestroy() {
 		Toast.makeText(this, "service done", Toast.LENGTH_SHORT).show();
 	}
+
+	public class MyBinder extends Binder {
+		MeraService getService() {
+			return MeraService.this;
+		}
+	}
+
 
 }

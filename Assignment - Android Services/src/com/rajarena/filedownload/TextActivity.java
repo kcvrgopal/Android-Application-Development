@@ -1,16 +1,38 @@
 package com.rajarena.filedownload;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import com.rajarena.filedownload.MeraService.MyBinder;
+
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.View;
 
 public class TextActivity extends Activity {
 	Context context=this;
+	MeraService ms;
+	boolean b=false;
+	Intent intent;
+	private ServiceConnection mConnection = new ServiceConnection() {
+
+		@Override
+		public void onServiceConnected(ComponentName className,
+				IBinder service) {
+			// We've bound to LocalService, cast the IBinder and get LocalService instance
+			MyBinder binder = (MyBinder) service;
+			ms = binder.getService();
+			b = true;
+		}
+
+		@Override
+		public void onServiceDisconnected(ComponentName arg0) {
+			b = false;
+		}
+	};	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -18,11 +40,27 @@ public class TextActivity extends Activity {
 	}
 	
 	public void tdown(View view){
-		Intent intent=new Intent(this, MeraIntentService.class);
-		String[] url={"http://www.sjsu.edu/towerfoundation/docs/Employment-Handbook-12.doc","http://www.engr.sjsu.edu/cme/assets/files/aluminfo.doc","http://www.sjsu.edu/publicaffairs/docs/sjsu_fax_template.doc","http://www.engr.sjsu.edu/E10/E10pdf/RobotProjectGuidelinesF13.doc","http://www.sjsu.edu/edd/Letter_of_Rec_form.doc"};
-		intent.putExtra("URL3", url);
+		Intent intent=new Intent(this, MeraService.class);
+		intent.putExtra("text", true);
 		startService(intent);
-		for(int j=0;j<url.length;j++)
-			System.out.println("Hey"+url[j]);
+	}
+	
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
+		intent = new Intent(this,MeraService.class);
+		//bindService(intent, mConnection,Context.BIND_AUTO_CREATE);
+		bindService(intent,mConnection, Context.BIND_ADJUST_WITH_ACTIVITY);
+	}
+	@Override
+	protected void onStop()
+	{
+		super.onStop();
+		if(b)
+		{
+			unbindService(mConnection);
+			b=false;
+		}
 	}
 }

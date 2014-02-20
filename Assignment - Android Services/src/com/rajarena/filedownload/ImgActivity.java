@@ -1,16 +1,39 @@
 package com.rajarena.filedownload;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import com.rajarena.filedownload.MeraService.MyBinder;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.View;
 
 public class ImgActivity extends Activity {
 	Context context=this;
+	
+	MeraService ms;
+	boolean b=false;
+	Intent intent;
+	private ServiceConnection mConnection = new ServiceConnection() {
+
+		@Override
+		public void onServiceConnected(ComponentName className,
+				IBinder service) {
+			// We've bound to LocalService, cast the IBinder and get LocalService instance
+			MyBinder binder = (MyBinder) service;
+			ms = binder.getService();
+			b = true;
+		}
+
+		@Override
+		public void onServiceDisconnected(ComponentName arg0) {
+			b = false;
+		}
+	};
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -18,9 +41,27 @@ public class ImgActivity extends Activity {
 	}
 	
 	public void idown(View view){
-		Intent intent=new Intent(this, MeraIntentService.class);
-		String[] url={"http://blogs.sjsu.edu/today/files/2014/01/mima-mounds-1l9fs40.jpg","http://blogs.sjsu.edu/today/files/2014/01/Gragera-inpost-11xdqr8.jpg","http://blogs.sjsu.edu/today/files/2014/01/spider-inpost-285iz3l.jpg"};
-		intent.putExtra("URL2", url);
+		Intent intent=new Intent(this, MeraService.class);
+		intent.putExtra("img", true);
 		startService(intent);
+	}
+	
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
+		intent = new Intent(this,MeraService.class);
+		//bindService(intent, mConnection,Context.BIND_AUTO_CREATE);
+		bindService(intent,mConnection, Context.BIND_ADJUST_WITH_ACTIVITY);
+	}
+	@Override
+	protected void onStop()
+	{
+		super.onStop();
+		if(b)
+		{
+			unbindService(mConnection);
+			b=false;
+		}
 	}
 }
