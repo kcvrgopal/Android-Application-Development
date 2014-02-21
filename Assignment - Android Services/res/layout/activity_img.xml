@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    
+    android:layout_height="match_parent"
+    android:background="@drawable/wp" >
+
     <Button
         android:id="@+id/idown"
         android:layout_width="wrap_content"
@@ -10,8 +11,9 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="84dp"
-        android:text="Start Download"
-        android:onClick="idown" />
+        android:onClick="idown"
+        android:background="#FFFFFF"
+        android:text="@string/start" />
 
     <TextView
         android:id="@+id/ilabel1"
@@ -20,7 +22,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="48dp"
-        android:text="IMAGE 1 File Location"
+        android:text="@string/img1"
+        android:textColor="#FFFFFF"
         android:textSize="30px" />
 
     <EditText
@@ -32,7 +35,8 @@
         android:layout_alignParentRight="true"
         android:ems="10"
         android:singleLine="true"
-        android:text="@string/ifile1" />
+        android:text="@string/ifile1"
+        android:textColor="#FFFFFF" />
 
     <EditText
         android:id="@+id/ifile2"
@@ -43,7 +47,8 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:singleLine="true"
-        android:text="@string/ifile2" />
+        android:text="@string/ifile2"
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/ilabel2"
@@ -52,7 +57,8 @@
         android:layout_alignBaseline="@+id/ifile2"
         android:layout_alignBottom="@+id/ifile2"
         android:layout_alignParentLeft="true"
-        android:text="IMAGE 2 File Location"
+        android:text="@string/img2"
+        android:textColor="#FFFFFF"
         android:textSize="30px" />
 
     <EditText
@@ -64,7 +70,8 @@
         android:layout_marginTop="14dp"
         android:ems="10"
         android:singleLine="true"
-        android:text="@string/ifile3" />
+        android:text="@string/ifile3"
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/ilabel3"
@@ -73,9 +80,8 @@
         android:layout_alignBaseline="@+id/ifile3"
         android:layout_alignBottom="@+id/ifile3"
         android:layout_alignParentLeft="true"
-        android:text="IMAGE 3 File Location"
+        android:text="@string/img3"
+        android:textColor="#FFFFFF"
         android:textSize="30px" />
-
-
 
 </RelativeLayout>

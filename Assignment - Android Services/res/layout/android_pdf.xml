@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@drawable/wp"
     android:layout_height="match_parent" >
 
     <Button
@@ -10,7 +11,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="84dp"
-        android:text="Start Download"
+        android:text="@string/start"
+        android:background="#FFFFFF"
         android:onClick="pdown" />
 
     <TextView
@@ -20,7 +22,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="48dp"
-        android:text="PDF 1 File Location"
+                android:textColor="#FFFFFF"
+        android:text="@string/pdf1"
         android:textSize="30px" />
 
     <EditText
@@ -32,6 +35,7 @@
         android:layout_alignParentRight="true"
         android:ems="10"
         android:singleLine="true"
+                android:textColor="#FFFFFF"
         android:text="@string/file1" />
 
     <EditText
@@ -41,7 +45,8 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/pfile1"
         android:layout_marginTop="16dp"
-        android:ems="10"
+        android:ems="10"        
+        android:textColor="#FFFFFF"
         android:singleLine="true"
         android:text="@string/file2" />
 
@@ -52,7 +57,8 @@
         android:layout_alignBaseline="@+id/pfile2"
         android:layout_alignBottom="@+id/pfile2"
         android:layout_alignParentLeft="true"
-        android:text="PDF 2 File Location"
+        android:text="@string/pdf2"
+        android:textColor="#FFFFFF"
         android:textSize="30px" />
 
     <EditText
@@ -63,6 +69,7 @@
         android:layout_below="@+id/pfile2"
         android:layout_marginTop="14dp"
         android:ems="10"
+        android:textColor="#FFFFFF"
         android:singleLine="true"
         android:text="@string/file3" />
 
@@ -73,7 +80,8 @@
         android:layout_alignBaseline="@+id/pfile3"
         android:layout_alignBottom="@+id/pfile3"
         android:layout_alignParentLeft="true"
-        android:text="PDF 3 File Location"
+        android:text="@string/pdf3"
+        android:textColor="#FFFFFF"
         android:textSize="30px" />
 
     <TextView
@@ -83,7 +91,8 @@
         android:layout_alignBaseline="@+id/pfile5"
         android:layout_alignBottom="@+id/pfile5"
         android:layout_alignParentLeft="true"
-        android:text="PDF 5 File Location"
+        android:text="@string/pdf5"
+        android:textColor="#FFFFFF"
         android:textSize="30px" />
 
     <EditText
@@ -95,6 +104,7 @@
         android:layout_marginBottom="63dp"
         android:ems="10"
         android:singleLine="true"
+        android:textColor="#FFFFFF"
         android:text="@string/file5" />
 
     <EditText
@@ -106,7 +116,8 @@
         android:layout_marginTop="30dp"
         android:ems="10"
         android:singleLine="true"
-        android:text="@string/file4" />
+        android:textColor="#FFFFFF"
+        android:text="@string/file4"/>
 
     <TextView
         android:id="@+id/plabel4"
@@ -115,7 +126,8 @@
         android:layout_alignBaseline="@+id/pfile4"
         android:layout_alignBottom="@+id/pfile4"
         android:layout_alignParentLeft="true"
-        android:text="PDF 4 File Location"
+        android:text="@string/pdf4"
+        android:textColor="#FFFFFF"
         android:textSize="30px" />
 
 </RelativeLayout>

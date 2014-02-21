@@ -14,7 +14,7 @@ import android.os.AsyncTask;
 import android.os.Environment;
 
 public class DownloadThis extends AsyncTask<URL, Integer, Long> {
-
+	private String act=null;
 	@Override
 	protected Long doInBackground(URL... urls) {
 		// TODO Auto-generated method stub
@@ -40,7 +40,7 @@ public class DownloadThis extends AsyncTask<URL, Integer, Long> {
 					int x= (int) (total * 100 / fileLength);
 					if(x==100)
 					{
-						System.out.println(name+" Downloaded ");
+						System.out.println(name+" Downloaded by "+act);
 					}	
 					output.write(data, 0, count);
 				}
@@ -56,10 +56,21 @@ public class DownloadThis extends AsyncTask<URL, Integer, Long> {
 				e.printStackTrace();
 			}
 		}
+
+		
+
+
 		return null;
+
 	}
-	
 
-
+	public void setAct(String s)
+	{
+		act=s;
+	}
+	public String getAct()
+	{
+		return act;
+	}
 
 }

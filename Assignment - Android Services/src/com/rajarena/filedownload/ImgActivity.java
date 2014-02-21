@@ -43,6 +43,7 @@ public class ImgActivity extends Activity {
 	public void idown(View view){
 		Intent intent=new Intent(this, MeraService.class);
 		intent.putExtra("img", true);
+		intent.putExtra("act_name", this.getClass().getSimpleName());
 		startService(intent);
 	}
 	
@@ -51,8 +52,8 @@ public class ImgActivity extends Activity {
 	{
 		super.onStart();
 		intent = new Intent(this,MeraService.class);
-		//bindService(intent, mConnection,Context.BIND_AUTO_CREATE);
-		bindService(intent,mConnection, Context.BIND_ADJUST_WITH_ACTIVITY);
+		bindService(intent, mConnection,Context.BIND_AUTO_CREATE);
+		//bindService(intent,mConnection, Context.BIND_ADJUST_WITH_ACTIVITY);
 	}
 	@Override
 	protected void onStop()

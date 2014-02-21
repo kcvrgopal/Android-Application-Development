@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wp"
     android:orientation="vertical" >
     <Button
         android:id="@+id/tdown"
@@ -10,7 +11,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="84dp"
-        android:text="Start Download"
+        android:text="@string/start"
+        android:background="#FFFFFF"
         android:onClick="tdown" />
 
     <TextView
@@ -20,7 +22,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="48dp"
-        android:text="TEXT 1 File Location"
+        android:text="@string/txt1"
+        android:textColor="#FFFFFF"
         android:textSize="30px" />
 
     <EditText
@@ -32,6 +35,7 @@
         android:layout_alignParentRight="true"
         android:ems="10"
         android:singleLine="true"
+        android:textColor="#FFFFFF"
         android:text="@string/tfile1" />
 
     <EditText
@@ -43,6 +47,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:singleLine="true"
+        android:textColor="#FFFFFF"
         android:text="@string/tfile2" />
 
     <TextView
@@ -52,7 +57,8 @@
         android:layout_alignBaseline="@+id/tfile2"
         android:layout_alignBottom="@+id/tfile2"
         android:layout_alignParentLeft="true"
-        android:text="TEXT 2 File Location"
+        android:text="@string/txt2"
+        android:textColor="#FFFFFF"
         android:textSize="30px" />
 
     <EditText
@@ -64,6 +70,7 @@
         android:layout_marginTop="14dp"
         android:ems="10"
         android:singleLine="true"
+        android:textColor="#FFFFFF"
         android:text="@string/tfile3" />
 
     <TextView
@@ -73,7 +80,8 @@
         android:layout_alignBaseline="@+id/tfile3"
         android:layout_alignBottom="@+id/tfile3"
         android:layout_alignParentLeft="true"
-        android:text="TEXT 3 File Location"
+        android:text="@string/txt3"
+        android:textColor="#FFFFFF"
         android:textSize="30px" />
 
     <TextView
@@ -83,7 +91,8 @@
         android:layout_alignBaseline="@+id/tfile5"
         android:layout_alignBottom="@+id/tfile5"
         android:layout_alignParentLeft="true"
-        android:text="TEXT 5 File Location"
+        android:text="@string/txt5"
+        android:textColor="#FFFFFF"
         android:textSize="30px" />
 
     <EditText
@@ -95,6 +104,7 @@
         android:layout_marginBottom="63dp"
         android:ems="10"
         android:singleLine="true"
+        android:textColor="#FFFFFF"
         android:text="@string/tfile5" />
 
     <EditText
@@ -106,6 +116,7 @@
         android:layout_marginTop="30dp"
         android:ems="10"
         android:singleLine="true"
+        android:textColor="#FFFFFF"
         android:text="@string/tfile4" />
 
     <TextView
@@ -115,7 +126,8 @@
         android:layout_alignBaseline="@+id/tfile4"
         android:layout_alignBottom="@+id/tfile4"
         android:layout_alignParentLeft="true"
-        android:text="TEXT 4 File Location"
+        android:textColor="#FFFFFF"
+        android:text="@string/txt4"
         android:textSize="30px" />
     
 
