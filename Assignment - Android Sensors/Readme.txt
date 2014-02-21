@@ -1,0 +1,1 @@
+The main objective of the assignment is to learn about sensors. In this app, we use timer to control flash light.
