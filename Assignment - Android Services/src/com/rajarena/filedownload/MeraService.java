@@ -10,12 +10,22 @@ import android.os.IBinder;
 import android.widget.Toast;
 
 public class MeraService extends Service {
-	private final IBinder mBinder = new MyBinder();
+	
+	 public class LocalBinder extends Binder {
+	       MeraService getService() {
+	            return MeraService.this;
+	        }
+	    }
+	
+	//private final IBinder mBinder = new MyBinder();
+	private final IBinder mBinder = new LocalBinder();
+
 	static String act=null;
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
+		System.out.println("in");
 		boolean p=intent.getBooleanExtra("pdf", false);
 		boolean i=intent.getBooleanExtra("img", false);
 		boolean t=intent.getBooleanExtra("text", false);
@@ -79,12 +89,12 @@ public class MeraService extends Service {
 	public void onDestroy() {
 		Toast.makeText(this, "service done", Toast.LENGTH_SHORT).show();
 	}
-
+/*
 	public class MyBinder extends Binder {
 		MeraService getService() {
 			return MeraService.this;
 		}
-	}
+	}*/
 
 
 }

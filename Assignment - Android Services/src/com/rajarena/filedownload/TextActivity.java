@@ -1,6 +1,8 @@
 package com.rajarena.filedownload;
 
-import com.rajarena.filedownload.MeraService.MyBinder;
+//import com.rajarena.filedownload.MeraService.MyBinder;
+
+
 
 
 import android.app.Activity;
@@ -17,6 +19,7 @@ public class TextActivity extends Activity {
 	MeraService ms;
 	boolean b=false;
 	Intent intent;
+	/*
 	private ServiceConnection mConnection = new ServiceConnection() {
 
 		@Override
@@ -33,6 +36,21 @@ public class TextActivity extends Activity {
 			b = false;
 		}
 	};	
+	*/
+
+	private ServiceConnection mConnection = new ServiceConnection() {
+		private MeraService mBoundService;
+	    public void onServiceConnected(ComponentName className, IBinder service) {
+	        mBoundService = ((MeraService.LocalBinder)service).getService();
+	    }
+
+	    public void onServiceDisconnected(ComponentName className) {
+	        mBoundService = null;
+	    }
+	};
+	
+
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,6 +61,9 @@ public class TextActivity extends Activity {
 		Intent intent=new Intent(this, MeraService.class);
 		intent.putExtra("text", true);
 		intent.putExtra("act_name", this.getClass().getSimpleName());
+		 bindService(intent, mConnection,Context.BIND_AUTO_CREATE);
+		//bindService(intent,mConnection, Context.BIND_ADJUST_WITH_ACTIVITY);
+
 		startService(intent);
 	}
 	
@@ -50,9 +71,6 @@ public class TextActivity extends Activity {
 	protected void onStart()
 	{
 		super.onStart();
-		intent = new Intent(this,MeraService.class);
-		bindService(intent, mConnection,Context.BIND_AUTO_CREATE);
-		//bindService(intent,mConnection, Context.BIND_ADJUST_WITH_ACTIVITY);
 	}
 	@Override
 	protected void onStop()

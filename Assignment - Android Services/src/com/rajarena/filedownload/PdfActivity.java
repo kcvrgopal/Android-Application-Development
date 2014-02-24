@@ -1,6 +1,7 @@
 package com.rajarena.filedownload;
 
-import com.rajarena.filedownload.MeraService.MyBinder;
+//import com.rajarena.filedownload.MeraService.MyBinder;
+
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -12,6 +13,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
+import android.widget.Toast;
 
 public class PdfActivity extends Activity {
 	Context context=this;
@@ -29,6 +31,8 @@ public class PdfActivity extends Activity {
 			}
 		}
 	}; 
+	/*
+	//For Bound service
 	private ServiceConnection mConnection = new ServiceConnection() {
 
 		@Override
@@ -45,6 +49,24 @@ public class PdfActivity extends Activity {
 			b = false;
 		}
 	};	
+	*/
+	
+//For Local service
+	private ServiceConnection mConnection = new ServiceConnection() {
+		private MeraService mBoundService;
+	    public void onServiceConnected(ComponentName className, IBinder service) {
+	        
+	        mBoundService = ((MeraService.LocalBinder)service).getService();
+
+	    }
+
+	    public void onServiceDisconnected(ComponentName className) {
+	       
+	        mBoundService = null;
+	      
+	    }
+	};
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -55,6 +77,9 @@ public class PdfActivity extends Activity {
 		intent=new Intent(this, MeraService.class);
 		intent.putExtra("pdf", true);
 		intent.putExtra("act_name", this.getClass().getSimpleName());
+		bindService(intent,mConnection, Context.BIND_AUTO_CREATE);
+		//bindService(intent,mConnection, Context.BIND_ADJUST_WITH_ACTIVITY);
+		System.out.println("Out");
 		startService(intent);
 
 	}
@@ -75,9 +100,6 @@ public class PdfActivity extends Activity {
 	protected void onStart()
 	{
 		super.onStart();
-		intent = new Intent(this,MeraService.class);
-		bindService(intent, mConnection,Context.BIND_AUTO_CREATE);
-		//bindService(intent,mConnection, Context.BIND_ADJUST_WITH_ACTIVITY);
 	}
 	@Override
 	protected void onStop()

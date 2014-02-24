@@ -1,6 +1,7 @@
 package com.rajarena.filedownload;
 
-import com.rajarena.filedownload.MeraService.MyBinder;
+//import com.rajarena.filedownload.MeraService.MyBinder;
+
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -17,6 +18,7 @@ public class ImgActivity extends Activity {
 	MeraService ms;
 	boolean b=false;
 	Intent intent;
+	/*
 	private ServiceConnection mConnection = new ServiceConnection() {
 
 		@Override
@@ -33,6 +35,23 @@ public class ImgActivity extends Activity {
 			b = false;
 		}
 	};
+	*/
+
+	private ServiceConnection mConnection = new ServiceConnection() {
+		private MeraService mBoundService;
+	    public void onServiceConnected(ComponentName className, IBinder service) {
+	       
+	        mBoundService = ((MeraService.LocalBinder)service).getService();
+
+	    }
+
+	    public void onServiceDisconnected(ComponentName className) {
+	      
+	        mBoundService = null;
+	     
+	    }
+	};
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +63,8 @@ public class ImgActivity extends Activity {
 		Intent intent=new Intent(this, MeraService.class);
 		intent.putExtra("img", true);
 		intent.putExtra("act_name", this.getClass().getSimpleName());
+		bindService(intent, mConnection,Context.BIND_AUTO_CREATE);
+		//bindService(intent,mConnection, Context.BIND_ADJUST_WITH_ACTIVITY);
 		startService(intent);
 	}
 	
@@ -51,9 +72,7 @@ public class ImgActivity extends Activity {
 	protected void onStart()
 	{
 		super.onStart();
-		intent = new Intent(this,MeraService.class);
-		bindService(intent, mConnection,Context.BIND_AUTO_CREATE);
-		//bindService(intent,mConnection, Context.BIND_ADJUST_WITH_ACTIVITY);
+
 	}
 	@Override
 	protected void onStop()
