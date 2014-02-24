@@ -91,4 +91,21 @@
         android:layout_centerVertical="true"
         android:text="4" />
 
+    <TextView
+        android:id="@+id/leanmasslabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/labelput"
+        android:layout_below="@+id/labelmaintain"
+        android:layout_marginTop="48dp"
+        android:text="Your lean body mass is " />
+
+    <TextView
+        android:id="@+id/leanmass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/leanmasslabel"
+        android:layout_toLeftOf="@+id/maintain"
+        android:text="" />
+
 </RelativeLayout>

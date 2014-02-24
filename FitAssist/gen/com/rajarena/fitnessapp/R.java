@@ -27,30 +27,32 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f090017;
-        public static final int age=0x7f09000d;
-        public static final int agelabel=0x7f09000c;
+        public static final int action_settings=0x7f090019;
+        public static final int age=0x7f09000f;
+        public static final int agelabel=0x7f09000e;
         public static final int bmi=0x7f090006;
         public static final int bmr=0x7f090007;
-        public static final int bodyfat=0x7f090013;
-        public static final int bodyfatlabel=0x7f090012;
+        public static final int bodyfat=0x7f090015;
+        public static final int bodyfatlabel=0x7f090014;
         public static final int button1=0x7f090000;
         public static final int button2=0x7f090001;
         public static final int cut=0x7f09000a;
-        public static final int height=0x7f090010;
-        public static final int heightlabel=0x7f090011;
+        public static final int height=0x7f090012;
+        public static final int heightlabel=0x7f090013;
         public static final int labelbmi=0x7f090005;
         public static final int labelbmr=0x7f090004;
         public static final int labelcut=0x7f090008;
         public static final int labelmaintain=0x7f090009;
         public static final int labelput=0x7f090003;
+        public static final int leanmass=0x7f09000d;
+        public static final int leanmasslabel=0x7f09000c;
         public static final int maintain=0x7f09000b;
         public static final int put=0x7f090002;
-        public static final int saveinfo=0x7f090015;
-        public static final int sex=0x7f090016;
-        public static final int sexlabel=0x7f090014;
-        public static final int weight=0x7f09000f;
-        public static final int weightlabel=0x7f09000e;
+        public static final int saveinfo=0x7f090017;
+        public static final int sex=0x7f090018;
+        public static final int sexlabel=0x7f090016;
+        public static final int weight=0x7f090011;
+        public static final int weightlabel=0x7f090010;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
