@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/put"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/labelput"
+        android:layout_toRightOf="@+id/labelput"
+        android:text="3" />
+
+    <TextView
+        android:id="@+id/labelbmr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="95dp"
+        android:text="Your BMR is " />
+
+    <TextView
+        android:id="@+id/labelbmi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/labelbmr"
+        android:layout_marginTop="44dp"
+        android:text="Your BMI is " />
+
+    <TextView
+        android:id="@+id/labelput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/labelbmi"
+        android:layout_below="@+id/labelbmr"
+        android:layout_marginTop="64dp"
+        android:text="To Put on weight, You have to take in " />
+
+    <TextView
+        android:id="@+id/bmi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/labelbmi"
+        android:layout_alignBottom="@+id/labelbmi"
+        android:layout_alignLeft="@+id/bmr"
+        android:text="1 " />
+
+    <TextView
+        android:id="@+id/bmr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/labelput"
+        android:layout_alignRight="@+id/labelcut"
+        android:layout_marginRight="36dp"
+        android:text="2" />
+
+    <TextView
+        android:id="@+id/labelcut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:text="To lose weight, You have to take in " />
+
+    <TextView
+        android:id="@+id/labelmaintain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/cut"
+        android:layout_marginTop="34dp"
+        android:text="To maintain weight, You have to take in " />
+
+    <TextView
+        android:id="@+id/maintain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/labelmaintain"
+        android:layout_alignBottom="@+id/labelmaintain"
+        android:layout_marginLeft="17dp"
+        android:layout_toRightOf="@+id/labelmaintain"
+        android:text="5" />
+
+    <TextView
+        android:id="@+id/cut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/maintain"
+        android:layout_centerVertical="true"
+        android:text="4" />
+
+</RelativeLayout>
