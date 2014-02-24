@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CalActivity extends Activity {
 	@Override
@@ -13,6 +14,8 @@ public class CalActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.calactivity);
 		calculate();
+		String msg="You took "+Math.round(MainActivity.getCount());
+		Toast.makeText(this, msg , Toast.LENGTH_SHORT).show();
 	}
 	public void calculate()
 	{
@@ -51,11 +54,14 @@ public class CalActivity extends Activity {
 				break;
 		default: x=(float) 1.4;
 		}
+		float calburned=(float) (((float)val.get(1))*MainActivity.getCount()/3500);
 		((TextView) findViewById(R.id.bmi)).setText(String.valueOf(cbmi));
 		((TextView) findViewById(R.id.bmr)).setText(String.valueOf(Math.round(cbmr)));
 		((TextView) findViewById(R.id.put)).setText(String.valueOf(Math.round((cbmr*x)+500)));
 		((TextView) findViewById(R.id.cut)).setText(String.valueOf(Math.round((cbmr*x)-500)));
 		((TextView) findViewById(R.id.maintain)).setText(String.valueOf(Math.round((cbmr*1.4))));
 		((TextView) findViewById(R.id.leanmass)).setText(String.valueOf(Math.round(leanmass*2.2)));
+		((TextView) findViewById(R.id.calburned)).setText(String.valueOf(Math.round(calburned)));
+
 	}
 }

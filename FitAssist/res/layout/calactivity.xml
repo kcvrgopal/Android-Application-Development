@@ -108,4 +108,22 @@
         android:layout_toLeftOf="@+id/maintain"
         android:text="" />
 
+    <TextView
+        android:id="@+id/calburnedlabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/leanmasslabel"
+        android:layout_below="@+id/leanmasslabel"
+        android:layout_marginTop="42dp"
+        android:text="You burned " />
+
+    <TextView
+        android:id="@+id/calburned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/calburnedlabel"
+        android:layout_alignBottom="@+id/calburnedlabel"
+        android:layout_centerHorizontal="true"
+        android:text="" />
+
 </RelativeLayout>
