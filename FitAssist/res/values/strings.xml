@@ -8,5 +8,21 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+    <string-array name="manualactivity1">
+        <item>None</item>
+        <item>Swimming</item>
+        <item> Racquetball</item>
+        <item>Badminton</item>
+        <item>Hiking</item>
+        <item>Basketball</item>
+    </string-array>
+    <string-array name="manualactivity2">
+        <item>None</item>
+        <item>Swimming</item>
+        <item>Racketball</item>
+        <item>Badminton</item>
+        <item>Hiking</item>
+        <item>Basketball</item>
+    </string-array>
 
 </resources>

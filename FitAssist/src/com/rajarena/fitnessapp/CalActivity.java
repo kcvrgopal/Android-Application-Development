@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class CalActivity extends Activity {
+	static float wt;
+	double prev=0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -22,7 +24,7 @@ public class CalActivity extends Activity {
 		DBConnection dbc=new DBConnection(this);
 		List<Integer> val=dbc.getInfo();
 		float ht=(float)val.get(0)/100;
-		float wt=(float) ((float)val.get(1)/2.20462);
+		wt=(float) ((float)val.get(1)/2.20462);
 		float age=(float)val.get(2);
 		float bf=(float)val.get(3);
 		int sex=val.get(4);
@@ -39,28 +41,27 @@ public class CalActivity extends Activity {
 		{
 			cbmr = (float) (655+9.6*leanmass+1.8*ht-4.7*age);
 		}
-		double steps=MainActivity.getCount();
-		if(steps<1500)
+		double calburned = ((val.get(1))*MainActivity.getCount()/3500)+MainActivity.getCalBurned();
+		if(calburned<100)
 		{
 			x=(float) 1.2;
 		}
-		else if(steps>=1500&&steps<3000)
+		else if(calburned>=100&&calburned<250)
 		{
 			x=(float) 1.3;
 		}
-		else if(steps >= 3000 && steps <5700)
+		else if(calburned >= 250 && calburned <425)
 		{
 			x=(float) 1.4;
 		}
-		else if(steps>=5700&&steps <7900)
+		else if(calburned>=425&&calburned <700)
 		{
 			x=(float) 1.5;
 		}
-		else if(steps>=7900)
+		else if(calburned>=700)
 		{
 			x=(float) 1.6;	
 		}
-		float calburned=(float) (((float)val.get(1))*MainActivity.getCount()/3500);
 		((TextView) findViewById(R.id.bmi)).setText(String.valueOf(cbmi));
 		((TextView) findViewById(R.id.bmr)).setText(String.valueOf(Math.round(cbmr)));
 		((TextView) findViewById(R.id.put)).setText(String.valueOf(Math.round((cbmr*x)+500)));
@@ -69,5 +70,10 @@ public class CalActivity extends Activity {
 		((TextView) findViewById(R.id.leanmass)).setText(String.valueOf(Math.round(leanmass*2.2)));
 		((TextView) findViewById(R.id.calburned)).setText(String.valueOf(Math.round(calburned)));
 
+	}
+	
+	public static float getWeight()
+	{
+		return wt;
 	}
 }

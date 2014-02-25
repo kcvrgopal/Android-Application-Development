@@ -31,6 +31,10 @@
             android:name="com.rajarena.fitnessapp.CalActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity 
+            android:name="com.rajarena.fitnessapp.ManualActivity"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

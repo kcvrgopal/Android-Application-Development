@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:background="@drawable/wp"     >
+
+    <TextView
+        android:id="@+id/act1label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/spinner1"
+        android:layout_marginTop="18dp"
+        android:text="Select your activity"
+        android:textColor="#FFFFFF"  />
+
+    <TextView
+        android:id="@+id/act2label2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/spinner2"
+        android:layout_marginTop="30dp"
+        android:text="Enter duration in minutes"
+        android:textColor="#FFFFFF"  />
+
+    <Button
+        android:id="@+id/msubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/act2label2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Log it!" 
+        android:onClick="msubmit"
+        android:textColor="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/act1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/act1label2"
+        android:layout_alignBottom="@+id/act1label2"
+        android:layout_toRightOf="@+id/msubmit"
+        android:ems="10" 
+        android:textColor="#FFFFFF" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="26dp"
+        android:layout_toRightOf="@+id/msubmit"
+        android:entries="@array/manualactivity1" />
+
+    <TextView
+        android:id="@+id/act1label2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/spinner1"
+        android:layout_marginTop="24dp"
+        android:text="Enter duration in minutes" 
+        android:textColor="#FFFFFF" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/act1"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/act1"
+        android:layout_marginTop="17dp"
+        android:entries="@array/manualactivity2" />
+
+    <EditText
+        android:id="@+id/act2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/act2label2"
+        android:layout_alignBottom="@+id/act2label2"
+        android:layout_toRightOf="@+id/msubmit"
+        android:ems="10"
+        android:textColor="#FFFFFF"  />
+
+    <TextView
+        android:id="@+id/act2label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/spinner2"
+        android:layout_marginTop="18dp"
+        android:layout_toLeftOf="@+id/msubmit"
+        android:text="Select your Activity"
+        android:textColor="#FFFFFF" />
+
+</RelativeLayout>

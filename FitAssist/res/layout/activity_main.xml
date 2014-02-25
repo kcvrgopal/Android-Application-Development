@@ -51,4 +51,25 @@
         android:text="Want your Summary?" 
         android:textColor="#FFFFFF"/>
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp"
+        android:text="Add a manual Activity" 
+        android:textColor="#FFFFFF"/>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:text="logit"
+        android:textColor="#FFFFFF"
+        android:onClick="logit" />
+
 </RelativeLayout>
