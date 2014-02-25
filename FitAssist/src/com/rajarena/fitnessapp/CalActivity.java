@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class CalActivity extends Activity {
 	static float wt;
-	double prev=0;
+	static double calburned;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,7 +41,7 @@ public class CalActivity extends Activity {
 		{
 			cbmr = (float) (655+9.6*leanmass+1.8*ht-4.7*age);
 		}
-		double calburned = ((val.get(1))*MainActivity.getCount()/3500)+MainActivity.getCalBurned();
+		calburned = ((val.get(1))*MainActivity.getCount()/3500)+MainActivity.getCalBurned();
 		if(calburned<100)
 		{
 			x=(float) 1.2;
@@ -75,5 +75,10 @@ public class CalActivity extends Activity {
 	public static float getWeight()
 	{
 		return wt;
+	}
+	
+	public static double getCalBurned()
+	{
+		return calburned;
 	}
 }

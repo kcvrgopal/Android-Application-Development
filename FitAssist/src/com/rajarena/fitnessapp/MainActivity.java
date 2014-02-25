@@ -67,6 +67,14 @@ public class MainActivity extends Activity implements SensorEventListener {
 			}
 
 		}, tillMidnight, 86400000);	
+		myTimer = new Timer();
+		myTimer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				SummaryMethod();
+			}
+
+		}, 0, 10800000);	
 	}
 	
 	public void logit(View view)
@@ -83,6 +91,18 @@ public class MainActivity extends Activity implements SensorEventListener {
 		public void run() {
 			MainActivity.setCount(0.0);
 			MainActivity.resetCal();
+		}
+	};
+	
+	private void SummaryMethod()
+	{
+		this.runOnUiThread(summary);
+	}
+
+	private Runnable summary = new Runnable() {
+		public void run() {
+			String text="You took "+Math.round(MainActivity.getCount())+" steps and burned "+Math.round(CalActivity.getCalBurned())+" calories";
+			Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
 		}
 	};
 
