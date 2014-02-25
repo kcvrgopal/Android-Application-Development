@@ -1,6 +1,8 @@
 package com.rajarena.fitnessapp;
 
 import android.os.Bundle;
+import java.util.Timer;  
+import java.util.TimerTask; 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -18,17 +20,18 @@ public class MainActivity extends Activity implements SensorEventListener {
 	private static double count=0.0;
 	double last=0;
 	long now,prev=0;
+	String pmsg="";
+	Timer myTimer;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		sm=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
 		System.out.println("HEEEYYY");
-	//	countsensor=sm.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+		countsensor=sm.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
 		if(countsensor!=null)
 		{
 			Toast.makeText(this, "Step detector available", Toast.LENGTH_SHORT).show();
-
 			sm.registerListener(this, countsensor, SensorManager.SENSOR_DELAY_UI);
 		}
 		else
@@ -37,7 +40,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 			as=sm.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
 			if(as!=null)
 			{
-				Toast.makeText(this, "Accelerometer available", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "Don't worry, Accelerometer available", Toast.LENGTH_SHORT).show();
 				sm.registerListener(this, as, SensorManager.SENSOR_DELAY_NORMAL);
 			}
 			else
@@ -45,7 +48,27 @@ public class MainActivity extends Activity implements SensorEventListener {
 				Toast.makeText(this, "Accelerometer not available", Toast.LENGTH_SHORT).show();
 			}
 		}
+		myTimer = new Timer();
+	    myTimer.schedule(new TimerTask() {
+	        @Override
+	        public void run() {
+	            TimerMethod();
+	        }
+
+	    }, 0, 86400000);	
+	    }
+	
+	private void TimerMethod()
+	{
+	    this.runOnUiThread(Timer_Tick);
 	}
+
+	private Runnable Timer_Tick = new Runnable() {
+	    public void run() {
+	    	MainActivity.setCount(0.0);
+	    }
+	};
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -74,10 +97,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		if (event.sensor.getType() != Sensor.TYPE_LINEAR_ACCELERATION){
-			System.out.println("Not me");
-            return;
-        }
+		if (event.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION){
 		now=System.currentTimeMillis();
 		float time=(float)(now-prev);
 		//finding the time in seconds
@@ -98,7 +118,14 @@ public class MainActivity extends Activity implements SensorEventListener {
 		String msg="count is "+Math.round(count);
 		if(Math.round(count)%25==0&&Math.round(count)!=0)
 		{
-			Toast.makeText(this, ""+msg, Toast.LENGTH_SHORT).show();
+			if(!pmsg.equals(msg))
+				Toast.makeText(this, ""+msg, Toast.LENGTH_SHORT).show();
+			pmsg=msg;
+		}
+		}
+		else if(event.sensor.getType()==Sensor.TYPE_STEP_COUNTER)
+		{
+			this.count=Double.parseDouble(String.valueOf(event.values[0]));
 		}
 
 	}
@@ -116,7 +143,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 		}
 	}
 
-	public void setCount(int c)
+	public static void setCount(double c)
 	{
 		count=c;
 	}
