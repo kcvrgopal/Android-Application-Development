@@ -44,7 +44,8 @@
         android:layout_toRightOf="@+id/msubmit"
         android:ems="10"
         android:inputType="number"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:text="0" />
 
     <Spinner
         android:id="@+id/spinner1"
@@ -84,7 +85,8 @@
         android:layout_toRightOf="@+id/msubmit"
         android:ems="10"
         android:inputType="number"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:text="0"/>
 
     <TextView
         android:id="@+id/act2label"

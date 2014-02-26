@@ -6,6 +6,9 @@ import java.util.Calendar;
 import java.util.Timer;  
 import java.util.TimerTask; 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -31,7 +34,6 @@ public class MainActivity extends Activity implements SensorEventListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		sm=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
-		System.out.println("HEEEYYY");
 		countsensor=sm.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
 		if(countsensor!=null)
 		{
@@ -40,16 +42,15 @@ public class MainActivity extends Activity implements SensorEventListener {
 		}
 		else
 		{
-			Toast.makeText(this, "Step detector not available", Toast.LENGTH_SHORT).show();
 			as=sm.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
 			if(as!=null)
 			{
-				Toast.makeText(this, "Don't worry, Accelerometer available", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "Step detector not available. Don't worry, Accelerometer is available", Toast.LENGTH_SHORT).show();
 				sm.registerListener(this, as, SensorManager.SENSOR_DELAY_NORMAL);
 			}
 			else
 			{
-				Toast.makeText(this, "Accelerometer not available", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "Accelerometer and Step detector are not available", Toast.LENGTH_SHORT).show();
 			}
 		}
 		Calendar midnight=Calendar.getInstance();
@@ -74,9 +75,9 @@ public class MainActivity extends Activity implements SensorEventListener {
 				SummaryMethod();
 			}
 
-		}, 0, 10800000);	
+		}, 0, 10800000);
 	}
-	
+
 	public void logit(View view)
 	{
 		Intent intent=new Intent(this,ManualActivity.class);
@@ -93,7 +94,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 			MainActivity.resetCal();
 		}
 	};
-	
+
 	private void SummaryMethod()
 	{
 		this.runOnUiThread(summary);
@@ -101,15 +102,24 @@ public class MainActivity extends Activity implements SensorEventListener {
 
 	private Runnable summary = new Runnable() {
 		public void run() {
-			String text="You took "+Math.round(MainActivity.getCount())+" steps and burned "+Math.round(CalActivity.getCalBurned())+" calories";
-			Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+			String text="You took "+Math.round(MainActivity.getCount())+" steps."+"For detailed summary open application";
+			Intent intent = new Intent(getApplicationContext(), CalActivity.class);
+			PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
+			Notification notification = new Notification.Builder(getApplicationContext())
+			.setContentTitle("Your Summary ")
+			.setContentText(text).setSmallIcon(R.drawable.ic_launcher)
+			.setContentIntent(pIntent).build();
+			NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+			notification.flags |= Notification.FLAG_AUTO_CANCEL;
+			notificationManager.notify(0, notification);
+
 		}
 	};
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		//getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 

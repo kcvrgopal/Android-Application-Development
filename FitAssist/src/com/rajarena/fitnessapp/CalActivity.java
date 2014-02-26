@@ -3,14 +3,21 @@ package com.rajarena.fitnessapp;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class CalActivity extends Activity {
 	static float wt;
 	static double calburned;
+	private ShareActionProvider mShareActionProvider;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -19,6 +26,34 @@ public class CalActivity extends Activity {
 		String msg="You took "+Math.round(MainActivity.getCount());
 		Toast.makeText(this, msg , Toast.LENGTH_SHORT).show();
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.menu2, menu);
+	    MenuItem item=menu.findItem(R.id.shareit);
+	    mShareActionProvider = (ShareActionProvider) item.getActionProvider();
+	    return super.onCreateOptionsMenu(menu);
+	}
+	
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		System.out.println("ZZZ");
+		 switch (item.getItemId()) {
+	        case R.id.shareit:
+	        	String msg="Yippee, I took "+Math.round(MainActivity.getCount())+" steps and burned "+Math.round(CalActivity.getCalBurned())+" today";
+	        	Intent sendIntent = new Intent();
+	    		sendIntent.setAction(Intent.ACTION_SEND);
+	    		sendIntent.putExtra(Intent.EXTRA_TEXT, msg);
+	    		sendIntent.setType("text/plain");
+	    		startActivity(Intent.createChooser(sendIntent, "Share your summary to "));
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }	    
+	}
+	
 	public void calculate()
 	{
 		DBConnection dbc=new DBConnection(this);
@@ -62,10 +97,19 @@ public class CalActivity extends Activity {
 		{
 			x=(float) 1.6;	
 		}
+		double lcbmr=cbmr;
+		if (((cbmr*x)-500)<cbmr)
+		{
+			lcbmr=cbmr;
+		}
+		else
+		{
+			lcbmr = (cbmr*x)-500;
+		}
 		((TextView) findViewById(R.id.bmi)).setText(String.valueOf(cbmi));
 		((TextView) findViewById(R.id.bmr)).setText(String.valueOf(Math.round(cbmr)));
 		((TextView) findViewById(R.id.put)).setText(String.valueOf(Math.round((cbmr*x)+500)));
-		((TextView) findViewById(R.id.cut)).setText(String.valueOf(Math.round((cbmr*x)-500)));
+		((TextView) findViewById(R.id.cut)).setText(String.valueOf(Math.round(lcbmr)));
 		((TextView) findViewById(R.id.maintain)).setText(String.valueOf(Math.round((cbmr*x))));
 		((TextView) findViewById(R.id.leanmass)).setText(String.valueOf(Math.round(leanmass*2.2)));
 		((TextView) findViewById(R.id.calburned)).setText(String.valueOf(Math.round(calburned)));

@@ -1,6 +1,7 @@
 package com.rajarena.fitnessapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -60,5 +61,7 @@ public class ManualActivity extends Activity {
 		System.out.println(calburned);
 		MainActivity.addCalBurned(calburned);
 		Toast.makeText(this, "Activities recored", Toast.LENGTH_SHORT).show();
+		Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+		startActivity(intent);
 	}
 }

@@ -27,7 +27,8 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
-        public static final int wp=0x7f020001;
+        public static final int share=0x7f020001;
+        public static final int wp=0x7f020002;
     }
     public static final class id {
         public static final int act1=0x7f090024;
@@ -64,6 +65,7 @@ public final class R {
         public static final int saveinfo=0x7f09001c;
         public static final int sex=0x7f09001d;
         public static final int sexlabel=0x7f09001b;
+        public static final int shareit=0x7f090029;
         public static final int spinner1=0x7f090020;
         public static final int spinner2=0x7f090022;
         public static final int textView1=0x7f090002;
@@ -80,6 +82,7 @@ public final class R {
     }
     public static final class menu {
         public static final int main=0x7f080000;
+        public static final int menu2=0x7f080001;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
