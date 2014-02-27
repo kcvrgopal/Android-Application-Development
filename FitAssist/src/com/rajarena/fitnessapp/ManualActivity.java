@@ -1,5 +1,7 @@
 package com.rajarena.fitnessapp;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -54,11 +56,12 @@ public class ManualActivity extends Activity {
 			{
 				met[i]=7.0;
 			}
-			System.out.println(CalActivity.getWeight());
-			
+			DBConnection dbc=new DBConnection(this);
+			List<Integer> val=dbc.getInfo();
+			wt=(float) ((float)val.get(1)/2.20462);			
 		}
 		double calburned=(t1*(met[0]*3.5*wt)/200)+(t2*(met[1]*3.5*wt)/200);
-		System.out.println(calburned);
+		System.out.println("hello"+calburned);
 		MainActivity.addCalBurned(calburned);
 		Toast.makeText(this, "Activities recored", Toast.LENGTH_SHORT).show();
 		Intent intent=new Intent(getApplicationContext(),MainActivity.class);

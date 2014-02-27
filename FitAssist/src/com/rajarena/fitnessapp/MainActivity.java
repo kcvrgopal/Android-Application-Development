@@ -1,6 +1,7 @@
 package com.rajarena.fitnessapp;
 
 import android.os.Bundle;
+import android.os.PowerManager;
 
 import java.util.Calendar;
 import java.util.Timer;  
@@ -23,6 +24,8 @@ public class MainActivity extends Activity implements SensorEventListener {
 	SensorManager sm;
 	static double calburned;
 	Sensor countsensor,as;
+	PowerManager.WakeLock wl;
+	PowerManager pm;
 	private static double count=0.0;
 	double last=0;
 	long now,prev=0;
@@ -33,6 +36,10 @@ public class MainActivity extends Activity implements SensorEventListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+		PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "My Tag");
+		wl.acquire();
+
 		sm=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
 		countsensor=sm.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
 		if(countsensor!=null)
@@ -46,7 +53,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 			if(as!=null)
 			{
 				Toast.makeText(this, "Step detector not available. Don't worry, Accelerometer is available", Toast.LENGTH_SHORT).show();
-				sm.registerListener(this, as, SensorManager.SENSOR_DELAY_NORMAL);
+				sm.registerListener(this, as, SensorManager.SENSOR_DELAY_FASTEST);
 			}
 			else
 			{
@@ -77,6 +84,11 @@ public class MainActivity extends Activity implements SensorEventListener {
 
 		}, 0, 10800000);
 	}
+
+	/*	public void onStart()
+	{
+		super.onStart();
+	}*/
 
 	public void logit(View view)
 	{
@@ -154,11 +166,10 @@ public class MainActivity extends Activity implements SensorEventListener {
 			double z=Double.parseDouble(String.valueOf(event.values[2]));
 			double res=Math.sqrt(x*x+y*y+z*z);
 			double dist=(res*time_s*time_s*1000);
-			//System.out.println(dist);
-			if(dist>50)
+			System.out.println(dist*100);
+			if (dist>=1.75)
 			{
-				this.count=this.count+0.39;
-				//System.out.println(count);
+				MainActivity.count=MainActivity.count+0.94;
 			}
 			prev=now;
 			last=res;
@@ -172,7 +183,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 		}
 		else if(event.sensor.getType()==Sensor.TYPE_STEP_COUNTER)
 		{
-			this.count=Double.parseDouble(String.valueOf(event.values[0]));
+			MainActivity.count=Double.parseDouble(String.valueOf(event.values[0]));
 		}
 
 	}
@@ -188,6 +199,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 		{
 			sm.unregisterListener(this);
 		}
+		wl.release();
 	}
 
 	public static void setCount(double c)

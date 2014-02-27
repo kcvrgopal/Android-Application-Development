@@ -58,6 +58,8 @@ public class CalActivity extends Activity {
 	{
 		DBConnection dbc=new DBConnection(this);
 		List<Integer> val=dbc.getInfo();
+		if(!val.isEmpty())
+		{
 		float ht=(float)val.get(0)/100;
 		wt=(float) ((float)val.get(1)/2.20462);
 		float age=(float)val.get(2);
@@ -113,6 +115,18 @@ public class CalActivity extends Activity {
 		((TextView) findViewById(R.id.maintain)).setText(String.valueOf(Math.round((cbmr*x))));
 		((TextView) findViewById(R.id.leanmass)).setText(String.valueOf(Math.round(leanmass*2.2)));
 		((TextView) findViewById(R.id.calburned)).setText(String.valueOf(Math.round(calburned)));
+		}
+		else
+		{
+			((TextView) findViewById(R.id.bmi)).setText("0");
+			((TextView) findViewById(R.id.bmr)).setText("0");
+			((TextView) findViewById(R.id.put)).setText("0");
+			((TextView) findViewById(R.id.cut)).setText("0");
+			((TextView) findViewById(R.id.maintain)).setText("0");
+			((TextView) findViewById(R.id.leanmass)).setText("0");
+			((TextView) findViewById(R.id.calburned)).setText(String.valueOf(Math.round(calburned/55)));
+			Toast.makeText(this, "Did you register your data?", Toast.LENGTH_SHORT).show();
+		}
 
 	}
 	

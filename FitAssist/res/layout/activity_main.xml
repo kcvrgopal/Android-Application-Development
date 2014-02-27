@@ -68,8 +68,8 @@
         android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="19dp"
-        android:text="logit"
+        android:text="log it"
         android:textColor="#FFFFFF"
-        android:onClick="log it" />
+        android:onClick="logit" />
 
 </RelativeLayout>

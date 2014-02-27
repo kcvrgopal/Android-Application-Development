@@ -2,6 +2,9 @@ package com.rajarena.fitnessapp;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,8 +37,26 @@ public class InfoActivity extends Activity {
 			sex=1;
 		}
 		DBConnection dbc=new DBConnection(this);
-		dbc.addInfo(Integer.parseInt(height.getText().toString()), Integer.parseInt(weight.getText().toString()), Integer.parseInt(age.getText().toString()), Integer.parseInt(bodyfat.getText().toString()),sex);
+		String ht=height.getText().toString();
+		String wt=weight.getText().toString();
+		String ag=age.getText().toString();
+		String bf=bodyfat.getText().toString();
+		if(ht.isEmpty()||wt.isEmpty()||ag.isEmpty())
+		{
+			//System.out.println("IN");
+			new AlertDialog.Builder(this).setTitle("Incomplete entries").setMessage("Did you enter all the values?").setNeutralButton("Retry",new DialogInterface.OnClickListener() {
+		           public void onClick(DialogInterface dialog, int id) {
+
+		           }
+		       }).create().show();
+		}
+		else
+		{
+			
+		dbc.addInfo(Integer.parseInt(ht),Integer.parseInt(wt) ,Integer.parseInt(ag) ,Integer.parseInt(bf) ,sex);
 		Toast.makeText(this, "Information Saved", Toast.LENGTH_SHORT).show();
 		Log.d("saveinfo", "Saved");
+		startActivity(new Intent(this,MainActivity.class));
+		}
 	}
 }
