@@ -22,7 +22,6 @@ public class DBConnection extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase database) {
-		// TODO Auto-generated method stub
 		database.execSQL("CREATE TABLE USER_INFO (_id INTEGER PRIMARY KEY AUTOINCREMENT, height INTEGER, weight INTEGER, age INTEGER, bodyfat INTEGER, sex INTEGER)");
 
 	}
@@ -36,7 +35,7 @@ public class DBConnection extends SQLiteOpenHelper {
 	onCreate(db);
 	 
 	}
-	
+	//Inserting data
 	public void addInfo(int ht, int wt, int age, int bodyfat,int sex)
 	 
 	{
@@ -50,16 +49,14 @@ public class DBConnection extends SQLiteOpenHelper {
 	values.put("sex",sex);
 	 
 	getWritableDatabase().insert("USER_INFO", "name", values);	 
+	getWritableDatabase().close();
 	}
-	
+	//Retrieving data
 	public List<Integer> getInfo()
 
 	{
 		List<Integer> test=new ArrayList<Integer>();
 	    String selectQuery = "SELECT  * FROM USER_INFO WHERE _id=(SELECT MAX(_id) FROM USER_INFO)";
-	//    String selectQuerywt = "SELECT  weight FROM USER_INFO WHERE _id=(SELECT MAX(ID) FROM TABLE)";
-	//    String selectQueryage = "SELECT  age FROM USER_INFO WHERE ID=(SELECT MAX(ID) FROM TABLE)";
-	//    String selectQuerybf = "SELECT  bodyfat FROM USER_INFO WHERE ID=(SELECT MAX(ID) FROM TABLE)";
 
 	    SQLiteDatabase db = this.getWritableDatabase();
 	    Cursor cursor = db.rawQuery(selectQuery, null);
@@ -74,8 +71,11 @@ public class DBConnection extends SQLiteOpenHelper {
 	        } while (cursor.moveToNext());
 	        
 	    }
+	    cursor.close();
+	    db.close();
 	     return test;
 	}
 	 
+	
 
 }

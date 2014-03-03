@@ -25,7 +25,6 @@ public class MainActivity extends Activity implements SensorEventListener {
 	static double calburned;
 	Sensor countsensor,as;
 	PowerManager.WakeLock wl;
-	PowerManager pm;
 	private static double count=0.0;
 	double last=0;
 	long now,prev=0;
@@ -36,10 +35,12 @@ public class MainActivity extends Activity implements SensorEventListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		//Acquiring WakeLock
 		PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-		PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "My Tag");
+		wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "My Tag");
+		wl.setReferenceCounted(false);
 		wl.acquire();
-
+		//Getting count and accelerometer sensors
 		sm=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
 		countsensor=sm.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
 		if(countsensor!=null)
@@ -57,9 +58,10 @@ public class MainActivity extends Activity implements SensorEventListener {
 			}
 			else
 			{
-				Toast.makeText(this, "Accelerometer and Step detector are not available", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "Accelerometer and Step detectors are not available", Toast.LENGTH_SHORT).show();
 			}
 		}
+		//Initiating schedule services for periodic notifications and daily data reset
 		Calendar midnight=Calendar.getInstance();
 		midnight.set(Calendar.HOUR_OF_DAY, 0);
 		midnight.set(Calendar.MINUTE, 0);
@@ -85,16 +87,18 @@ public class MainActivity extends Activity implements SensorEventListener {
 		}, 0, 10800000);
 	}
 
-	/*	public void onStart()
+	public void onStart()
 	{
 		super.onStart();
-	}*/
+	}
 
 	public void logit(View view)
 	{
 		Intent intent=new Intent(this,ManualActivity.class);
 		startActivity(intent);
 	}
+	
+	//To reset counter and calories burned every midnight
 	private void TimerMethod()
 	{
 		this.runOnUiThread(Timer_Tick);
@@ -102,11 +106,13 @@ public class MainActivity extends Activity implements SensorEventListener {
 
 	private Runnable Timer_Tick = new Runnable() {
 		public void run() {
+			((FitAssistApplication) MainActivity.this.getApplication()).setCalBurned(0.0);
+			((FitAssistApplication) MainActivity.this.getApplication()).setCount(0.0);
 			MainActivity.setCount(0.0);
 			MainActivity.resetCal();
 		}
 	};
-
+	//To provide summary for every 3 hours
 	private void SummaryMethod()
 	{
 		this.runOnUiThread(summary);
@@ -114,7 +120,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 
 	private Runnable summary = new Runnable() {
 		public void run() {
-			String text="You took "+Math.round(MainActivity.getCount())+" steps."+"For detailed summary open application";
+			String text="You took "+Math.round(((FitAssistApplication) MainActivity.this.getApplication()).getCount())+" steps and burned "+Math.round(((FitAssistApplication) MainActivity.this.getApplication()).getCalBurned())+" Calories.";
 			Intent intent = new Intent(getApplicationContext(), CalActivity.class);
 			PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
 			Notification notification = new Notification.Builder(getApplicationContext())
@@ -130,8 +136,6 @@ public class MainActivity extends Activity implements SensorEventListener {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 
@@ -161,20 +165,22 @@ public class MainActivity extends Activity implements SensorEventListener {
 			float time=(float)(now-prev);
 			//finding the time in seconds
 			float time_s=(time/1000);
+			//finding the acceleration 
 			double x=Double.parseDouble(String.valueOf(event.values[0]));
 			double y=Double.parseDouble(String.valueOf(event.values[1]));
 			double z=Double.parseDouble(String.valueOf(event.values[2]));
 			double res=Math.sqrt(x*x+y*y+z*z);
+			//finding the distance
 			double dist=(res*time_s*time_s*1000);
-			System.out.println(dist*100);
-			if (dist>=1.75)
+			if (dist>=1.85)
 			{
-				MainActivity.count=MainActivity.count+0.94;
+				count=count+0.8;
+				((FitAssistApplication) this.getApplication()).setCount(count);
+
 			}
 			prev=now;
-			last=res;
 			String msg="count is "+Math.round(count);
-			if(Math.round(count)%25==0&&Math.round(count)!=0)
+			if(Math.round(count)%100==0&&Math.round(count)!=0)
 			{
 				if(!pmsg.equals(msg))
 					Toast.makeText(this, ""+msg, Toast.LENGTH_SHORT).show();
@@ -183,11 +189,30 @@ public class MainActivity extends Activity implements SensorEventListener {
 		}
 		else if(event.sensor.getType()==Sensor.TYPE_STEP_COUNTER)
 		{
-			MainActivity.count=Double.parseDouble(String.valueOf(event.values[0]));
+			count=Double.parseDouble(String.valueOf(event.values[0]));
+			((FitAssistApplication) this.getApplication()).setCount(count);
 		}
 
 	}
+	public void onRestart()
+	{
+		super.onRestart();
 
+	}
+	
+	public void onResume()
+	{
+		super.onResume();
+		
+	}
+	
+	public void onPause()
+	{
+		super.onPause();
+		
+	}
+	
+	//unregistering the listeners and releasing wake lock when app is destroyed
 	public void onDestroy()
 	{
 		super.onDestroy();

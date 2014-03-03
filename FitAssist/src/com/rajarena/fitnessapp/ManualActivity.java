@@ -2,8 +2,8 @@ package com.rajarena.fitnessapp;
 
 import java.util.List;
 
+
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -15,7 +15,7 @@ public class ManualActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.manualactivity);
-}
+	}
 	public void msubmit(View view)
 	{
 		double[] met = new double[2];
@@ -34,7 +34,7 @@ public class ManualActivity extends Activity {
 			if(act[i].equalsIgnoreCase("None"))
 			{
 				met[i]=0;
-				
+
 			}
 			else if(act[i].equalsIgnoreCase("Swimming"))
 			{
@@ -58,13 +58,27 @@ public class ManualActivity extends Activity {
 			}
 			DBConnection dbc=new DBConnection(this);
 			List<Integer> val=dbc.getInfo();
-			wt=(float) ((float)val.get(1)/2.20462);			
+			if(val.isEmpty())
+			{
+				wt=0;
+			}
+			else
+			{
+				System.out.println(val.get(1));
+				wt=(float) ((float)val.get(1)/2.20462);	
+			}
 		}
 		double calburned=(t1*(met[0]*3.5*wt)/200)+(t2*(met[1]*3.5*wt)/200);
-		System.out.println("hello"+calburned);
+		((FitAssistApplication) this.getApplication()).addCalBurned(calburned);
 		MainActivity.addCalBurned(calburned);
-		Toast.makeText(this, "Activities recored", Toast.LENGTH_SHORT).show();
-		Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-		startActivity(intent);
+		if(wt==0)
+		{
+			Toast.makeText(this, "Did your register your data?", Toast.LENGTH_SHORT).show();
+		}
+		else
+		{
+			Toast.makeText(this, "Activities recorded", Toast.LENGTH_SHORT).show();
+		}
+		finish();
 	}
 }
