@@ -18,6 +18,7 @@ public class ManualActivity extends Activity {
 	}
 	public void msubmit(View view)
 	{
+		DBConnection dbc=new DBConnection(this);
 		double[] met = new double[2];
 		Spinner act1=(Spinner)findViewById(R.id.spinner1);
 		String activity1=String.valueOf(act1.getSelectedItem());
@@ -56,7 +57,6 @@ public class ManualActivity extends Activity {
 			{
 				met[i]=7.0;
 			}
-			DBConnection dbc=new DBConnection(this);
 			List<Integer> val=dbc.getInfo();
 			if(val.isEmpty())
 			{
@@ -69,8 +69,8 @@ public class ManualActivity extends Activity {
 			}
 		}
 		double calburned=(t1*(met[0]*3.5*wt)/200)+(t2*(met[1]*3.5*wt)/200);
-		((FitAssistApplication) this.getApplication()).addCalBurned(calburned);
-		MainActivity.addCalBurned(calburned);
+		List<Integer> old=dbc.getCalfromdb();
+		dbc.updateCal(calburned+old.get(0));
 		if(wt==0)
 		{
 			Toast.makeText(this, "Did your register your data?", Toast.LENGTH_SHORT).show();

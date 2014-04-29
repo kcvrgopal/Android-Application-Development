@@ -15,19 +15,22 @@ public class CalActivity extends Activity {
 	static float wt;
 	static double calburned;
 	DBConnection dbc;
+	List<Integer> countval;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.calactivity);
 		dbc=new DBConnection(this);
-		String msg="You took "+Math.round(((FitAssistApplication) this.getApplication()).getCount())+" steps";
+		countval=dbc.getCountfromdb();
+		String msg="You took "+ countval.get(0)+" steps";
 		Toast.makeText(this, msg , Toast.LENGTH_SHORT).show();
+		calculate();
+		
 	}
 	public void onStart()
 	{
 		super.onStart();
-		calculate();
 	}
 	public void onRestart()
 	{
@@ -57,10 +60,12 @@ public class CalActivity extends Activity {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		dbc=new DBConnection(this);
+		countval=dbc.getCountfromdb();
 		System.out.println("ZZZ");
 		 switch (item.getItemId()) {
 	        case R.id.shareit:
-	        	String msg="Yippee, I took "+Math.round(((FitAssistApplication) this.getApplication()).getCount())+" steps and burned "+Math.round(((FitAssistApplication) this.getApplication()).getCalBurned())+" calories today! - Via FitAssist";
+	        	String msg="Yippee, I took "+countval.get(0)+" steps and burned "+Math.round(((FitAssistApplication) this.getApplication()).getCalBurned())+" calories today! - Via FitAssist";
 	        	Intent sendIntent = new Intent();
 	    		sendIntent.setAction(Intent.ACTION_SEND);
 	    		sendIntent.putExtra(Intent.EXTRA_TEXT, msg);
@@ -74,7 +79,7 @@ public class CalActivity extends Activity {
 	
 	public void calculate()
 	{
-		//DBConnection dbc=new DBConnection(this);
+		dbc=new DBConnection(this);
 		List<Integer> val=dbc.getInfo();
 		if(!val.isEmpty())
 		{
@@ -98,8 +103,11 @@ public class CalActivity extends Activity {
 		{
 			cbmr = (float) (655+9.6*leanmass+1.8*ht-4.7*age);
 		}
-		calburned = ((val.get(1))*((FitAssistApplication) this.getApplication()).getCount()/3500)+MainActivity.getCalBurned();
-		((FitAssistApplication) this.getApplication()).setCalBurned(calburned);
+		List<Integer> ccount=dbc.getCalfromdb();
+		countval=dbc.getCountfromdb();
+		calburned = ((val.get(1))*(((float)countval.get(0))/3500));
+		System.out.println("test"+countval.get(0)+"CCount"+ccount.get(0));
+		dbc.updateCal(calburned);
 		if(calburned<100)
 		{
 			x=(float) 1.2;
@@ -159,5 +167,6 @@ public class CalActivity extends Activity {
 	public static double getCalBurned()
 	{
 		return calburned;
+		
 	}
 }

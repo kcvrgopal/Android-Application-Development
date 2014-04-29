@@ -39,6 +39,9 @@
             android:name="com.rajarena.fitnessapp.ManualActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <service 
+            android:name="com.rajarena.fitnessapp.CountService"
+            android:enabled="true" />
     </application>
 
 </manifest>
