@@ -7,32 +7,124 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="18" />
-<uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-        <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+	<uses-feature android:name="android.hardware.camera" />
+	<uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     
     
+
     <application
+        android:name="com.rajarena.emergencyassist.EmergencyAssistApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/finalv1"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.rajarena.emergencyassist.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".SmsReceiver"> 
-            <intent-filter> 
-                <action android:name=
-                    "android.provider.Telephony.SMS_RECEIVED" /> 
-            </intent-filter> 
+        <activity
+            android:name="com.rajarena.emergencyassist.Register"
+            android:screenOrientation="portrait" 
+            android:parentActivityName="com.rajarena.emergencyassist.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.rajarena.emergencyassist.MainActivity" /> 
+        </activity>
+        <activity
+            android:name="com.rajarena.emergencyassist.SettingsPage"
+            android:screenOrientation="portrait"
+			android:parentActivityName="com.rajarena.emergencyassist.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.rajarena.emergencyassist.MainActivity" />        </activity>
+        
+        <activity
+            android:name="com.rajarena.emergencyassist.PinEntry"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.rajarena.emergencyassist.PinCreate"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <receiver android:name="com.rajarena.emergencyassist.SmsMonitor" >
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
         </receiver>
+        <receiver android:name="com.rajarena.emergencyassist.MyWidgetProvider" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.rajarena.emergencyassist.MyWidgetProvider.ACTION_CLICK" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
+
+        <service
+            android:name="com.rajarena.emergencyassist.SendService"
+            android:enabled="true" />
+        <service
+            android:name="com.rajarena.emergencyassist.ShakeDetector"
+            android:enabled="true" />
+
+        <activity
+            android:name="com.rajarena.emergencyassist.EmergencyContacts"
+            android:label="@string/title_activity_emergency_contacts"
+			android:parentActivityName="com.rajarena.emergencyassist.MainActivity"
+			android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.rajarena.emergencyassist.MainActivity" />        </activity>
+        <activity
+            android:name="com.rajarena.emergencyassist.MedicalInformation"
+            android:label="@string/title_activity_medical_information" 
+			android:parentActivityName="com.rajarena.emergencyassist.MainActivity"
+			android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.rajarena.emergencyassist.MainActivity" />        </activity>
+        <activity
+            android:name="com.rajarena.emergencyassist.WidgetDialogActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/title_medical_info"
+            android:launchMode="singleInstance"
+            android:theme="@android:style/Theme.Dialog"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.rajarena.emergencyassist.CameraActivity"
+            android:label="@string/title_activity_camera"
+            android:parentActivityName="com.rajarena.emergencyassist.MainActivity"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.rajarena.emergencyassist.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.rajarena.emergencyassist.ParseRestActivity"
+            android:label="@string/title_activity_parse_rest"
+            android:parentActivityName="com.rajarena.emergencyassist.MainActivity"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.rajarena.emergencyassist.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -10,6 +10,9 @@ package com.rajarena.emergencyassist;
 public final class R {
     public static final class attr {
     }
+    public static final class color {
+        public static final int white=0x7f070000;
+    }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
 
@@ -17,27 +20,126 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f040000;
-        public static final int activity_vertical_margin=0x7f040001;
+        public static final int activity_horizontal_margin=0x7f050000;
+        public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int alert=0x7f020000;
+        public static final int bb=0x7f020001;
+        public static final int blu=0x7f020002;
+        public static final int blu1=0x7f020003;
+        public static final int blu2=0x7f020004;
+        public static final int contact=0x7f020005;
+        public static final int entry=0x7f020006;
+        public static final int finalv1=0x7f020007;
+        public static final int ic_action_photo=0x7f020008;
+        public static final int key=0x7f020009;
+        public static final int lock=0x7f02000a;
+        public static final int med=0x7f02000b;
+        public static final int myshape=0x7f02000c;
+        public static final int pin=0x7f02000d;
+        public static final int shake=0x7f02000e;
+        public static final int simple=0x7f02000f;
     }
     public static final class id {
-        public static final int action_settings=0x7f080002;
-        public static final int button1=0x7f080000;
-        public static final int editText1=0x7f080001;
+        public static final int accessshow=0x7f0a0008;
+        public static final int action_settings=0x7f0a0025;
+        public static final int btnSaveMedicalInfo=0x7f0a0017;
+        public static final int button1=0x7f0a0004;
+        public static final int button2=0x7f0a0006;
+        public static final int button3=0x7f0a0005;
+        public static final int camera_photo_button=0x7f0a0002;
+        public static final int camera_preview=0x7f0a0000;
+        public static final int camera_surface_view=0x7f0a0001;
+        public static final int contactsButton=0x7f0a0009;
+        public static final int dialogTextView1=0x7f0a0019;
+        public static final int editCodeText=0x7f0a0020;
+        public static final int editText1=0x7f0a0007;
+        public static final int layout=0x7f0a0023;
+        public static final int lblAllergies=0x7f0a0014;
+        public static final int lblBloodType=0x7f0a0012;
+        public static final int lblEnterInfo=0x7f0a0018;
+        public static final int lblMedicines=0x7f0a0016;
+        public static final int lblName=0x7f0a0010;
+        public static final int lock_layout=0x7f0a0024;
+        public static final int medicalButton=0x7f0a000e;
+        public static final int okButton1=0x7f0a001a;
+        public static final int p1=0x7f0a001e;
+        public static final int p2=0x7f0a001d;
+        public static final int pincreate=0x7f0a001b;
+        public static final int pinenter=0x7f0a001f;
+        public static final int set=0x7f0a0026;
+        public static final int switch1=0x7f0a0022;
+        public static final int textView1=0x7f0a0003;
+        public static final int textView2=0x7f0a001c;
+        public static final int txtAllergy=0x7f0a0013;
+        public static final int txtBloodType=0x7f0a0011;
+        public static final int txtMedicines=0x7f0a0015;
+        public static final int txtName=0x7f0a000f;
+        public static final int v=0x7f0a0021;
+        public static final int view1=0x7f0a000c;
+        public static final int view2=0x7f0a000b;
+        public static final int view3=0x7f0a000d;
+        public static final int view4=0x7f0a000a;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
+        public static final int activity_camera=0x7f030000;
+        public static final int activity_emergency_contacts=0x7f030001;
+        public static final int activity_main=0x7f030002;
+        public static final int activity_medical_information=0x7f030003;
+        public static final int activity_parse_rest=0x7f030004;
+        public static final int activity_widget_dialog=0x7f030005;
+        public static final int pincreate=0x7f030006;
+        public static final int pinentry=0x7f030007;
+        public static final int register=0x7f030008;
+        public static final int settingspage=0x7f030009;
+        public static final int widget_layout=0x7f03000a;
+        public static final int widget_lock_layout=0x7f03000b;
     }
     public static final class menu {
-        public static final int main=0x7f070000;
+        public static final int camera=0x7f090000;
+        public static final int emergency_contacts=0x7f090001;
+        public static final int main_menu=0x7f090002;
+        public static final int medical_information=0x7f090003;
+        public static final int parse_rest=0x7f090004;
+        public static final int widget_dialog=0x7f090005;
     }
     public static final class string {
-        public static final int action_settings=0x7f050001;
-        public static final int app_name=0x7f050000;
-        public static final int hello_world=0x7f050002;
+        public static final int MedInfo=0x7f06001a;
+        public static final int action_settings=0x7f060001;
+        public static final int addContact=0x7f060018;
+        public static final int alert=0x7f060013;
+        public static final int alertWithImage=0x7f060014;
+        public static final int app_name=0x7f060000;
+        public static final int change=0x7f06000c;
+        public static final int changepin=0x7f06000f;
+        public static final int chooseContact=0x7f060019;
+        public static final int create=0x7f060012;
+        public static final int edit=0x7f060002;
+        public static final int editContacts=0x7f060015;
+        public static final int enter=0x7f06000d;
+        public static final int ex=0x7f060005;
+        public static final int go=0x7f06000e;
+        public static final int hello_world=0x7f060017;
+        public static final int hint=0x7f060006;
+        public static final int pinenter=0x7f060010;
+        public static final int pinreenter=0x7f060011;
+        public static final int save=0x7f060007;
+        public static final int saveContact=0x7f06001b;
+        public static final int saveit=0x7f060008;
+        public static final int setting=0x7f060009;
+        public static final int shake=0x7f060003;
+        public static final int title_activity_camera=0x7f060021;
+        public static final int title_activity_emergency_contacts=0x7f060016;
+        public static final int title_activity_medical_information=0x7f06001d;
+        public static final int title_activity_parse_rest=0x7f060022;
+        public static final int title_activity_widget_dialog=0x7f06001f;
+        public static final int title_medical_info=0x7f060020;
+        public static final int tvalue=0x7f060004;
+        public static final int view=0x7f06000a;
+        public static final int viewContacts=0x7f06001c;
+        public static final int viewMed=0x7f06001e;
+        public static final int viewit=0x7f06000b;
     }
     public static final class style {
         /** 
@@ -61,10 +163,14 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f080001;
+        public static final int Divider=0x7f080002;
+    }
+    public static final class xml {
+        public static final int widget_info=0x7f040000;
     }
 }

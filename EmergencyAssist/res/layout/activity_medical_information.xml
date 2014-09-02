@@ -1,0 +1,177 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/med"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MedicalInformation" >
+
+    <EditText
+        android:id="@+id/txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/lblName"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/txtBloodType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/lblBloodType"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:textColor="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/txtAllergy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/lblAllergies"
+        android:layout_alignRight="@+id/txtBloodType"
+        android:ems="10"
+        android:textColor="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/txtMedicines"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/lblMedicines"
+        android:layout_alignRight="@+id/txtBloodType"
+        android:ems="10"
+        android:textColor="#FFFFFF" />
+
+ 
+    <Button
+        android:id="@+id/btnSaveMedicalInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/view1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/blu"
+        android:onClick="saveMedicalInfo"
+        android:text="Save"
+        android:textColor="#FFFFFF" />
+
+
+
+
+    <View
+        style="@style/Divider"
+        android:layout_above="@+id/txtMedicines"
+        android:layout_alignRight="@+id/txtMedicines"
+        android:layout_marginBottom="16dp"
+        android:background="@color/white"
+        
+	/>
+
+    <TextView
+        android:id="@+id/lblAllergies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtMedicines"
+        android:layout_alignLeft="@+id/lblBloodType"
+        android:layout_marginBottom="37dp"
+        android:text="Allergies"
+        android:textColor="#FFFFFF" />
+
+    <View
+        style="@style/Divider"
+        android:layout_above="@+id/txtAllergy"
+        android:layout_alignRight="@+id/txtAllergy"
+        android:layout_marginBottom="16dp"
+        android:background="@color/white"
+        
+	/>
+
+    <View
+        style="@style/Divider"
+        android:layout_above="@+id/txtBloodType"
+        android:layout_alignRight="@+id/txtBloodType"
+        android:layout_marginBottom="18dp"
+        android:background="@color/white"
+        
+	/>
+
+
+
+    <View
+        style="@style/Divider"
+        android:layout_above="@+id/btnSaveMedicalInfo"
+        android:layout_alignLeft="@+id/btnSaveMedicalInfo"
+        android:layout_marginBottom="18dp"
+        android:background="@color/white"
+        
+	/>
+
+    <TextView
+        android:id="@+id/lblMedicines"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnSaveMedicalInfo"
+        android:layout_alignLeft="@+id/lblAllergies"
+        android:layout_marginBottom="40dp"
+        android:ems="4"
+        android:text="Medicines"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/lblBloodType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtAllergy"
+        android:layout_alignLeft="@+id/lblName"
+        android:layout_marginBottom="44dp"
+        android:ems="4"
+        android:text="Blood Type"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/lblName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtBloodType"
+        android:layout_alignLeft="@+id/lblEnterInfo"
+        android:layout_marginBottom="44dp"
+        android:text="Name"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/lblEnterInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtName"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="18dp"
+        android:text="Enter Your Medical Information"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" />
+
+    <View
+        style="@style/Divider"
+        android:layout_alignRight="@+id/txtName"
+        android:layout_below="@+id/lblEnterInfo"
+        android:background="@color/white"        
+	/>
+
+    <View
+        style="@style/Divider"
+        android:layout_above="@+id/lblEnterInfo"
+        android:layout_alignRight="@+id/txtName"
+        android:layout_marginBottom="15dp"
+        android:background="@color/white"
+	/>
+
+    
+
+</RelativeLayout>
